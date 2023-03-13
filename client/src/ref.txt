@@ -1,0 +1,9 @@
+Vanilla Bootstrap:
+- https://getbootstrap.com/docs/5.2/getting-started/download/#npm
+
+React Bootstrap:
+- https://react-bootstrap.netlify.app/getting-started/introduction/
+
+Design 
+- https://dribbble.com/shots/7141501-Concept-KAYAK-Website/attachments/145475?mode=media
+- https://www.kayak.co.uk/

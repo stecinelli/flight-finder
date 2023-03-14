@@ -2,74 +2,113 @@ import React from 'react'
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import { useMainContext } from '../Context'
+import Checkbox from '../Components/Checkbox';
+import Input from '../Components/Input';
+import Button from '../Components/Button';
 
 const Home = () => {
+  const {
+    isRound, setIsRound,
+    isOneWay, setisOneWay,
+    setplaceFrom,
+    setPlaceTo,
+    setDepartureDate,
+    setReturnDate,
+    setQntAdults,
+    setQntChildren
+  } = useMainContext();
+
+  const anyFunction = () => { }
+
   return (
-    <Container>
-      <Form>
-        <div className="mb-3">
-          <Form.Check
-            inline
-            label="Round-trip"
-            name="round"
-            type="checkbox"
-            id={"round"}
-          />
-          <Form.Check
-            inline
-            label="One-way"
-            name="oneWay"
-            type="checkbox"
-            id={"oneWay"}
-          />
-        </div>
-        <div className="mb-3">
-          <Form.Group controlId="searchDestination">
-            <Row>
-              <Col>
-                <Form.Label>From</Form.Label>
-                <Form.Control type="text" placeholder="From" required />
-              </Col>
-              <Col>
-                <Form.Label>To</Form.Label>
-                <Form.Control type="text" placeholder="To" required />
-              </Col>
-            </Row>
-          </Form.Group>
-        </div>
-        <div className="mb-3">
-          <Form.Group controlId="searchTime">
-            <Row>
-              <Col>
-                <Form.Label>Departure</Form.Label>
-                <Form.Control type="text" placeholder="Departure" />
-              </Col>
-              <Col>
-                <Form.Label>Return</Form.Label>
-                <Form.Control type="text" placeholder="Return" />
-              </Col>
-            </Row>
-          </Form.Group>
-        </div>
-        <div className="mb-3">
-          <Form.Group controlId="searchQnt">
-            <Row>
-              <Col>
-                <Form.Label>Adult</Form.Label>
-                <Form.Control type="number" placeholder="0" />
-              </Col>
-              <Col>
-                <Form.Label>Children</Form.Label>
-                <Form.Control type="number" placeholder="0" />
-              </Col>
-            </Row>
-          </Form.Group>
-        </div>
-        <Button variant="warning" type='submit'>Search</Button>
-      </Form>
+    <Container className='d-flex p-5 justify-content-center align-items-center'>
+      <Container className='border border-success p-2 mb-2 border-opacity-25 rounded bg-light'>
+        <Form>
+          <div className="mb-3">
+            <Checkbox
+              lableName='Round-trip'
+              isChecked={isRound}
+              setIsChecked={setIsRound}
+              setUsUnchecked={setisOneWay} />
+            <Checkbox
+              lableName='One-way'
+              isChecked={isOneWay}
+              setIsChecked={setisOneWay}
+              setUsUnchecked={setIsRound} />
+          </div>
+          <div className="mb-3">
+            <Form.Group controlId="searchDestination">
+              <Row>
+                <Col>
+                  <Input
+                    lableName='From'
+                    type='text'
+                    isRequired={true}
+                    getValueFunction={setplaceFrom}
+                    buttonFunction={anyFunction} />
+                </Col>
+                <Col>
+                  <Input
+                    lableName='To'
+                    type='text'
+                    isRequired={true}
+                    getValueFunction={setPlaceTo}
+                    buttonFunction={anyFunction} />
+                </Col>
+              </Row>
+            </Form.Group>
+          </div>
+          <div className="mb-3">
+            <Form.Group controlId="searchTime">
+              <Row>
+                <Col>
+                  <Input
+                    lableName='Departure'
+                    type='text'
+                    isRequired={false}
+                    getValueFunction={setDepartureDate}
+                    buttonFunction={anyFunction} />
+                </Col>
+                <Col>
+                  <Input
+                    lableName='Return'
+                    type='text'
+                    isRequired={false}
+                    getValueFunction={setReturnDate}
+                    buttonFunction={anyFunction} />
+                </Col>
+              </Row>
+            </Form.Group>
+          </div>
+          <div className="mb-3">
+            <Form.Group controlId="searchQnt">
+              <Row>
+                <Col>
+                  <Input
+                    lableName='Adults'
+                    type='number'
+                    isRequired={false}
+                    getValueFunction={setQntAdults}
+                    buttonFunction={anyFunction} />
+                </Col>
+                <Col>
+                  <Input
+                    lableName='Children'
+                    type='number'
+                    isRequired={false}
+                    getValueFunction={setQntChildren}
+                    buttonFunction={anyFunction} />
+                </Col>
+              </Row>
+            </Form.Group>
+          </div>
+          <Button buttonText='Search' buttonFunction={anyFunction} />
+        </Form>
+      </Container>
     </Container>
+
   )
 }
 

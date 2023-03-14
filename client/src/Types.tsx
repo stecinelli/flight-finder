@@ -1,6 +1,24 @@
 export interface IContext {
-  flightsList: Array<object>,
-  setflightsList: React.Dispatch<React.SetStateAction<Array<object>>>,
+  flightsList: object | null,
+  setflightsList: React.Dispatch<React.SetStateAction<object>>,
+  search: object, 
+  setSearch: React.Dispatch<React.SetStateAction<object>>,
+  isRound: boolean, 
+  setIsRound: React.Dispatch<React.SetStateAction<boolean>>,
+  isOneWay: boolean, 
+  setisOneWay: React.Dispatch<React.SetStateAction<boolean>>,
+  placeFrom: string, 
+  setplaceFrom: React.Dispatch<React.SetStateAction<string>>,
+  placeTo: string, 
+  setPlaceTo: React.Dispatch<React.SetStateAction<string>>,
+  departureDate: string, 
+  setDepartureDate: React.Dispatch<React.SetStateAction<string>>,
+  returnDate: string, 
+  setReturnDate: React.Dispatch<React.SetStateAction<string>>,
+  qntAdults: number, 
+  setQntAdults: React.Dispatch<React.SetStateAction<number>>,
+  qntChildren: number, 
+  setQntChildren: React.Dispatch<React.SetStateAction<number>>,
 }
 
 export interface IFlight {
@@ -17,7 +35,7 @@ export interface IFlight {
       currency: string,
       adult: number,
       child: number
-    }  
+    }
   },
   waitHours?: number,
   prices: {
@@ -27,16 +45,22 @@ export interface IFlight {
   }
 };
 
-export interface IFlightsRoute  {
+export interface IFlightsRoute {
   route_id: string,
   departureDestination: string,
   arrivalDestination: string,
   itineraries: IFlight[]
 }
 
-export interface IBooking   {
+export interface IBooking {
   flight_id: string,
   bookedSeats: number,
-  userName: string,
+  userName: string, 
   email: string
+}
+
+export interface ISearch {
+  departureDestination: string,
+  arrivalDestination: string,
+  date?: string
 }

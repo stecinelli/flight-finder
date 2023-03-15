@@ -20,8 +20,8 @@ const Checkbox = ({ lableName, isChecked, setIsChecked, setUsUnchecked }: IProps
     <Form.Check
       inline
       type="checkbox"
-      label="Round-trip"
-      name="round"
+      label={lableName}
+      name={lableName}
       id={"round"}
       checked={isChecked}
       onChange={(e)=> handleToogle(e) }

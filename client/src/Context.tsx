@@ -2,10 +2,6 @@ import { createContext, useContext } from 'react';
 import { IContext } from './Types';
 
 export const MainContext = createContext<IContext>({
-  flightsList: {},
-  setflightsList: () => {},
-  search: {}, 
-  setSearch: () => {},
   isRound: false, 
   setIsRound: () => {},
   isOneWay: false, 
@@ -22,6 +18,11 @@ export const MainContext = createContext<IContext>({
   setQntAdults: () => {},
   qntChildren: 0, 
   setQntChildren: () => {},
+  flightsListReturn: null,
+  setflightsListReturn: () => {},
+  flightsListDeparture: null,
+  setflightsListDeparture: () => {},
+  getFlightsList: () => {},
 });
 
 export const useMainContext = () => useContext(MainContext);

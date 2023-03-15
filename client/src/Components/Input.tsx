@@ -5,11 +5,12 @@ interface IPropsInput {
   lableName: string,
   type: string,
   isRequired: boolean,
+  size?: "sm" | "lg" | undefined,
   buttonFunction: () => void,
   getValueFunction: (s: any) => void,
 }
 
-const Input = ({ lableName, isRequired, getValueFunction, buttonFunction, type }: IPropsInput) => {
+const Input = ({ lableName, isRequired, getValueFunction, buttonFunction, type, size }: IPropsInput) => {
 
   const getValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -19,9 +20,11 @@ const Input = ({ lableName, isRequired, getValueFunction, buttonFunction, type }
 
   return (
     <>
-      <Form.Label>{lableName}</Form.Label>
+      {size !== 'sm' && <Form.Label>{lableName}</Form.Label>}
+      
       <Form.Control
         type={type}
+        size={size}
         placeholder={type === 'number' ?'0' :lableName}
         required={isRequired}
         onKeyDown={e => {

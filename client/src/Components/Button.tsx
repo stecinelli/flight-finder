@@ -3,15 +3,17 @@ import ButtonBootstrap from 'react-bootstrap/Button';
 
 interface IPropsButtons {
   buttonText: string,
+  size?: "sm" | "lg" | undefined,
   buttonFunction: () => void,
 }
 
-const Button = ({ buttonText, buttonFunction }: IPropsButtons) => {
+const Button = ({ buttonText, buttonFunction, size }: IPropsButtons) => {
   return (
     <ButtonBootstrap
       variant="warning"
       type='submit'
-      onClick={buttonFunction}>
+      size={size}
+      onClick={(e)=> { e.stopPropagation() ; buttonFunction()}}>
       {buttonText}
     </ButtonBootstrap>
   )

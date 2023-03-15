@@ -7,6 +7,7 @@ import Home from './Pages/Home'
 import Bookings from './Pages/Bookings'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SearchResult from './Pages/SearchResult';
 
 
 const router = createBrowserRouter([
@@ -22,6 +23,9 @@ const router = createBrowserRouter([
       {
         path: '/bookings',
         element: <Bookings />,
+      },{
+        path: '/searchResult',
+        element: <SearchResult/>,
       },
     ]
   }

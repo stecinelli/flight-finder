@@ -1,8 +1,4 @@
 export interface IContext {
-  flightsList: object | null,
-  setflightsList: React.Dispatch<React.SetStateAction<object>>,
-  search: object, 
-  setSearch: React.Dispatch<React.SetStateAction<object>>,
   isRound: boolean, 
   setIsRound: React.Dispatch<React.SetStateAction<boolean>>,
   isOneWay: boolean, 
@@ -19,6 +15,11 @@ export interface IContext {
   setQntAdults: React.Dispatch<React.SetStateAction<number>>,
   qntChildren: number, 
   setQntChildren: React.Dispatch<React.SetStateAction<number>>,
+  flightsListReturn: IFlightsRoute | null,
+  setflightsListReturn: React.Dispatch<React.SetStateAction<IFlightsRoute | null>>,
+  flightsListDeparture: IFlightsRoute | null,
+  setflightsListDeparture: React.Dispatch<React.SetStateAction<IFlightsRoute | null>>
+  getFlightsList: () => void
 }
 
 export interface IFlight {

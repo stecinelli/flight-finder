@@ -13,7 +13,7 @@ const Button = ({ buttonText, buttonFunction, size }: IPropsButtons) => {
       variant="warning"
       type='submit'
       size={size}
-      onClick={(e)=> { e.stopPropagation() ; buttonFunction()}}>
+      onClick={(e)=> { console.log('foi'); e.preventDefault() ; buttonFunction()}}>
       {buttonText}
     </ButtonBootstrap>
   )

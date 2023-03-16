@@ -23,7 +23,8 @@ const router = createBrowserRouter([
       {
         path: '/bookings',
         element: <Bookings />,
-      },{
+      },
+      {
         path: '/searchResult',
         element: <SearchResult/>,
       },

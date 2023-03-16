@@ -15,10 +15,10 @@ export interface IContext {
   setQntAdults: React.Dispatch<React.SetStateAction<number>>,
   qntChildren: number, 
   setQntChildren: React.Dispatch<React.SetStateAction<number>>,
-  flightsListReturn: IFlightsRoute | null,
-  setflightsListReturn: React.Dispatch<React.SetStateAction<IFlightsRoute | null>>,
-  flightsListDeparture: IFlightsRoute | null,
-  setflightsListDeparture: React.Dispatch<React.SetStateAction<IFlightsRoute | null>>
+  flightsListReturn: IFlight[] | null | undefined,
+  setflightsListReturn: React.Dispatch<React.SetStateAction<IFlight[] | null | undefined>>,
+  flightsListDeparture: IFlight[] | null | undefined,
+  setflightsListDeparture: React.Dispatch<React.SetStateAction<IFlight[] | null | undefined>>
   getFlightsList: () => void
 }
 

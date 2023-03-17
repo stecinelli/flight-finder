@@ -4,7 +4,7 @@ import { MainContext } from './Context';
 import './App.css';
 import Navegation from './Components/Navegation';
 import Footer from './Components/Footer';
-import { ISearch, IFlight, IFlightsRoute } from './Types';
+import { ISearch, IFlight, IFlightsRoute, IBooking, IBookInfo } from './Types';
 
 
 function App() {
@@ -18,6 +18,9 @@ function App() {
   const [qntChildren, setQntChildren] = useState<number>(0)
   const [flightsListDeparture, setflightsListDeparture] = useState<IFlight[] | null | undefined>(null)
   const [flightsListReturn, setflightsListReturn] = useState<IFlight[] | null | undefined>(null)
+  const [isDeparSelec, setIsDeparSelec] = useState<boolean>(false)
+  const [bookingInfo, setBookingInfo] = useState<IBookInfo | null>(null)
+
 
   let navigate = useNavigate();
 
@@ -72,8 +75,33 @@ function App() {
     let path = `/searchResult`;
     navigate(path);
 
-
   }
+
+  const selectDeparFlight = (flight_id: string) => {
+    let path = `/bookFlight`;
+
+    setBookingInfo({
+      departureFlight: flight_id,
+    })
+
+    isOneWay
+    ? navigate(path)
+    : setIsDeparSelec(true)
+
+   }
+
+   const selectRetFlight = (flight_id: string) => {
+    let path = `/bookFlight`;
+
+      setBookingInfo((prevState: IBookInfo | null)=> {
+        return {
+          ...prevState!,
+          returnFlight: flight_id
+        }
+      })
+
+      navigate(path);
+   }
 
   const contextValue = useMemo(() => ({
     isRound, setIsRound,
@@ -86,7 +114,11 @@ function App() {
     qntChildren, setQntChildren,
     flightsListDeparture, setflightsListDeparture,
     flightsListReturn, setflightsListReturn,
+    isDeparSelec, setIsDeparSelec,
     getFlightsList,
+    selectDeparFlight,
+    selectRetFlight,
+    bookingInfo,
 
   }), [
     isRound, setIsRound,
@@ -99,6 +131,8 @@ function App() {
     qntChildren, setQntChildren,
     flightsListDeparture, setflightsListDeparture,
     flightsListReturn, setflightsListReturn,
+    isDeparSelec, setIsDeparSelec,
+    bookingInfo
   ]);
 
   return (

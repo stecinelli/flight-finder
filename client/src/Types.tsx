@@ -18,8 +18,13 @@ export interface IContext {
   flightsListReturn: IFlight[] | null | undefined,
   setflightsListReturn: React.Dispatch<React.SetStateAction<IFlight[] | null | undefined>>,
   flightsListDeparture: IFlight[] | null | undefined,
-  setflightsListDeparture: React.Dispatch<React.SetStateAction<IFlight[] | null | undefined>>
-  getFlightsList: () => void
+  setflightsListDeparture: React.Dispatch<React.SetStateAction<IFlight[] | null | undefined>>,
+  isDeparSelec: boolean,
+  setIsDeparSelec: React.Dispatch<React.SetStateAction<boolean>>,
+  getFlightsList: () => void,
+  selectDeparFlight: (flight_id: string) => void,
+  selectRetFlight: (flight_id: string) => void,
+  bookingInfo: IBookInfo | null,
 }
 
 export interface IFlight {
@@ -58,6 +63,11 @@ export interface IBooking {
   bookedSeats: number,
   userName: string, 
   email: string
+}
+
+export interface IBookInfo {
+  departureFlight: string,
+  returnFlight?: string,
 }
 
 export interface ISearch {

@@ -22,7 +22,12 @@ export const MainContext = createContext<IContext>({
   setflightsListReturn: () => {},
   flightsListDeparture: null,
   setflightsListDeparture: () => {},
+  isDeparSelec: false, 
+  setIsDeparSelec: () => {},
   getFlightsList: () => {},
+  selectDeparFlight: () => {},
+  selectRetFlight: () => {},
+  bookingInfo: null,
 });
 
 export const useMainContext = () => useContext(MainContext);

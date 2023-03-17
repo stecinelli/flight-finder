@@ -4,12 +4,11 @@ import Container from 'react-bootstrap/Container';
 import Button from './Button';
 
 interface IPropsCard {
-  flight: IFlight
+  flight: IFlight,
+  buttonFunction: (p:string)=> void,
 }
 
-const FlightCard = ({ flight: { flight_id, departureAt, arrivalAt, prices } }: IPropsCard) => {
-
-  const fakeFunc = () => { }
+const FlightCard = ({ flight: { flight_id, departureAt, arrivalAt, prices }, buttonFunction }: IPropsCard) => {
 
   return (
     <>
@@ -29,7 +28,7 @@ const FlightCard = ({ flight: { flight_id, departureAt, arrivalAt, prices } }: I
         <div className='d-inline-flex p-2 flex-column justify-content-start align-items-center bg-light border-start border-2'>
           <p className='bg-light'>{prices.currency}</p>
           <p className='bg-light'>{`${prices.adult} p/p`}</p>
-          <Button buttonText='Reserve' buttonFunction={fakeFunc} size='sm' />
+          <Button buttonText='Reserve' buttonFunction={()=> buttonFunction(flight_id)} size='sm' />
         </div>
       </Container>
     </>

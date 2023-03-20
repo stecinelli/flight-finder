@@ -2,7 +2,7 @@
 
 In this app I created an API with Express and Typescript and a frontend with React (Boostrap) and Typescript.
 
-<img src="/Screenshot Web - Flight Finder.jpg" alt="Screenshot Web" title="Screenshot Web" width="20%" height="20%"/>
+<img src="/Screenshot Web - Flight Finder.jpg" alt="Screenshot Web" title="Screenshot Web" width="35%" height="35%"/>
 
 ## API
 - GET: `api/flights`. This return a list of all flights in JSON-format.

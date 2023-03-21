@@ -21,4 +21,4 @@ In this app I created an API with Express and Typescript and a frontend with Rea
 
 ## Setup
 - server is in another repo 👉 https://github.com/stecinelli/flights-api
-- in this repo, go to flight-finder and do a npm i && npm start
+- in this repo, go to client folder and do a npm i && npm start

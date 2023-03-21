@@ -28,6 +28,12 @@ export const MainContext = createContext<IContext>({
   selectDeparFlight: () => {},
   selectRetFlight: () => {},
   bookingInfo: null,
+  setBookingInfo: () => {},
+  modalShow: false, 
+  setModalShow: () => {},
+  modalErrorShow: false, 
+  setModalErrorShow: () => {},
+  bookFlight: () => {}
 });
 
 export const useMainContext = () => useContext(MainContext);

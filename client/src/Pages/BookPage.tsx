@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useMainContext } from '../Context'
 import Container from 'react-bootstrap/Container';
 import FlightInfoCard from '../Components/FlightInfoCard';
 import OneLineSearch from '../Components/OneLineSearch';
-import { IFlight } from '../Types';
+import Input from '../Components/Input';
+import Button from '../Components/Button';
+import CenteredModal from '../Components/CenteredModal';
+import { IFlight, IBookInfo } from '../Types';
 
 
 const BookPage = () => {
@@ -15,8 +18,32 @@ const BookPage = () => {
     isRound,
     flightsListDeparture,
     flightsListReturn,
-    qntAdults
+    qntAdults,
+    setBookingInfo,
+    bookFlight,
+    modalShow, setModalShow,
+    modalErrorShow, setModalErrorShow
   } = useMainContext();
+
+  const getEmail = (email: string) => {
+    setBookingInfo((prevState: IBookInfo | null) => {
+      return {
+        ...prevState!,
+        email: email
+      }
+    })
+  }
+
+  const getName = (name: string) => {
+    setBookingInfo((prevState: IBookInfo | null) => {
+      return {
+        ...prevState!,
+        name: name
+      }
+    })
+  }
+
+  const any = () => { }
 
   const deparFlight: IFlight | null | undefined = flightsListDeparture && flightsListDeparture!
     .filter((flight: IFlight) => flight.flight_id === bookingInfo!.departureFlight)[0];
@@ -70,9 +97,46 @@ const BookPage = () => {
 
       </Container>
 
-      <Container className='d-flex flex-row justify-content-start align-items-start bg-light border border-2 rounded mt-4 mb-2'>
+      <Container className='bg-light rounded pb-2 mb-2 d-flex flex-column'>
+
+        <Container className='display-6 mt-3 p-1'>Passenger Information</Container>
+
+        <Container className='d-flex flex-column justify-content-start align-items-start bg-light border border-2 rounded mt-4 mb-4 p-2'>
+
+          <div>
+            <Input
+              lableName='Name'
+              type='text'
+              isRequired={true}
+              getValueFunction={getName}
+              buttonFunction={any} />
+          </div>
+          <div>
+            <Input
+              lableName='E-mail'
+              type='text'
+              isRequired={true}
+              getValueFunction={getEmail}
+              buttonFunction={any} />
+          </div>
+        </Container>
+
+        <Button buttonText={'Reserve'} buttonFunction={bookFlight} />
 
       </Container>
+
+      <CenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        error={modalErrorShow}
+      />
+
+      <CenteredModal
+        show={modalErrorShow}
+        onHide={() => setModalErrorShow(false)}
+        error={modalErrorShow}
+      />
+
     </>
 
   )

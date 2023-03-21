@@ -20,7 +20,8 @@ function App() {
   const [flightsListReturn, setflightsListReturn] = useState<IFlight[] | null | undefined>(null)
   const [isDeparSelec, setIsDeparSelec] = useState<boolean>(false)
   const [bookingInfo, setBookingInfo] = useState<IBookInfo | null>(null)
-
+  const [modalShow, setModalShow] = useState<boolean>(false);
+  const [modalErrorShow, setModalErrorShow] = useState<boolean>(false);
 
   let navigate = useNavigate();
 
@@ -29,7 +30,6 @@ function App() {
     let returnToBeSearched: ISearch | null = null;
 
     if (placeFrom === '' || placeTo === '') return
-
 
     if (departureDate !== '') {
       departureToBeSearched = {
@@ -85,23 +85,71 @@ function App() {
     })
 
     isOneWay
-    ? navigate(path)
-    : setIsDeparSelec(true)
+      ? navigate(path)
+      : setIsDeparSelec(true)
 
-   }
+  }
 
-   const selectRetFlight = (flight_id: string) => {
+  const selectRetFlight = (flight_id: string) => {
     let path = `/bookFlight`;
 
-      setBookingInfo((prevState: IBookInfo | null)=> {
-        return {
-          ...prevState!,
-          returnFlight: flight_id
-        }
-      })
+    setBookingInfo((prevState: IBookInfo | null) => {
+      return {
+        ...prevState!,
+        returnFlight: flight_id
+      }
+    })
 
-      navigate(path);
-   }
+    navigate(path);
+  }
+
+  const bookFlight = async () => {
+
+    let booking: IBooking | null = {
+      flight_id: bookingInfo!.departureFlight,
+      bookedSeats: qntAdults,
+      userName: bookingInfo!.name!,
+      email: bookingInfo!.email!
+    }
+
+    let bookStatus = {
+      statusDep: false,
+      statusRet: false
+    }
+
+    const response = await fetch(`http://localhost:8080/api/booking`, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(booking)
+    });
+    const status: boolean = response.ok;
+    bookStatus.statusDep = status;
+    console.log('statusDep', status)
+
+    if (isRound) {
+      booking = {
+        ...booking,
+        flight_id: bookingInfo!.returnFlight!
+      }
+
+      const response = await fetch(`http://localhost:8080/api/booking`, {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(booking)
+      });
+      const status: boolean = response.ok;
+      bookStatus.statusRet = status;
+      console.log('statusRet', status)
+    }
+
+    isOneWay 
+    ? bookStatus.statusDep 
+      ? setModalShow(true) 
+      : setModalErrorShow(true) 
+    : bookStatus.statusDep && bookStatus.statusRet 
+      ? setModalShow(true) 
+      : setModalErrorShow(true)
+  }
 
   const contextValue = useMemo(() => ({
     isRound, setIsRound,
@@ -118,7 +166,10 @@ function App() {
     getFlightsList,
     selectDeparFlight,
     selectRetFlight,
-    bookingInfo,
+    bookingInfo, setBookingInfo,
+    modalShow, setModalShow,
+    modalErrorShow, setModalErrorShow,
+    bookFlight
 
   }), [
     isRound, setIsRound,
@@ -132,7 +183,9 @@ function App() {
     flightsListDeparture, setflightsListDeparture,
     flightsListReturn, setflightsListReturn,
     isDeparSelec, setIsDeparSelec,
-    bookingInfo
+    bookingInfo, setBookingInfo,
+    modalShow, setModalShow,
+    modalErrorShow, setModalErrorShow
   ]);
 
   return (

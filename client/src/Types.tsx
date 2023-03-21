@@ -25,6 +25,12 @@ export interface IContext {
   selectDeparFlight: (flight_id: string) => void,
   selectRetFlight: (flight_id: string) => void,
   bookingInfo: IBookInfo | null,
+  setBookingInfo: React.Dispatch<React.SetStateAction<IBookInfo | null>>,
+  modalShow: boolean, 
+  setModalShow: React.Dispatch<React.SetStateAction<boolean>>,
+  modalErrorShow: boolean, 
+  setModalErrorShow: React.Dispatch<React.SetStateAction<boolean>>,
+  bookFlight: () => void,
 }
 
 export interface IFlight {
@@ -68,6 +74,8 @@ export interface IBooking {
 export interface IBookInfo {
   departureFlight: string,
   returnFlight?: string,
+  name?: string,
+  email?: string,
 }
 
 export interface ISearch {

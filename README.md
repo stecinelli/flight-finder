@@ -2,7 +2,7 @@
 
 In this app I created an API with Express and Typescript and a frontend with React (Boostrap) and Typescript.
 
-<img src="/Screenshot Web - Flight Finder.jpg" alt="Screenshot Web" title="Screenshot Web" width="35%" height="35%"/>
+<img src="/Screenshot Web - Flight Finder.jpg" alt="Screenshot Web" title="Screenshot Web" width="23%" height="23%"/> &nbsp; <img src="/Screenshot Web 2 - Flight Finder.jpg" alt="Screenshot Web" title="Screenshot Web" width="25%" height="25%"/> &nbsp; <img src="/Screenshot Web 3 - Flight Finder.jpg" alt="Screenshot Web" title="Screenshot Web" width="23%" height="23%"/> &nbsp; <img src="/Screenshot Web 6 - Flight Finder.jpg" alt="Screenshot Web" title="Screenshot Web" width="23%" height="23%"/>
 
 ## API
 - GET: `api/flights`. This return a list of all flights in JSON-format.

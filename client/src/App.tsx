@@ -16,8 +16,8 @@ function App() {
   const [returnDate, setReturnDate] = useState<string>('')
   const [qntAdults, setQntAdults] = useState<number>(0)
   const [qntChildren, setQntChildren] = useState<number>(0)
-  const [flightsListDeparture, setflightsListDeparture] = useState<IFlight[] | null | undefined>(null)
-  const [flightsListReturn, setflightsListReturn] = useState<IFlight[] | null | undefined>(null)
+  const [flightsListDeparture, setflightsListDeparture] = useState<IFlight[] | undefined>([])
+  const [flightsListReturn, setflightsListReturn] = useState<IFlight[] | undefined>([])
   const [isDeparSelec, setIsDeparSelec] = useState<boolean>(false)
   const [bookingInfo, setBookingInfo] = useState<IBookInfo | null>(null)
   const [modalShow, setModalShow] = useState<boolean>(false);
@@ -48,7 +48,6 @@ function App() {
       `http://localhost:8080/api/flights?departureDestination=${departureToBeSearched.departureDestination}&arrivalDestination=${departureToBeSearched.arrivalDestination}${departureDate !== '' ? '&date=' + departureToBeSearched.date : ''}`);
     const data: IFlightsRoute | null = await response.json();
     setflightsListDeparture(data!.itineraries)
-    console.log(flightsListDeparture)
 
     if (isRound) {
       if (returnDate !== '') {
@@ -68,7 +67,6 @@ function App() {
         `http://localhost:8080/api/flights?departureDestination=${returnToBeSearched.departureDestination}&arrivalDestination=${returnToBeSearched.arrivalDestination}${returnDate !== '' ? '&date=' + returnToBeSearched.date : ''}`);
       const data: IFlightsRoute | null = await response.json();
       setflightsListReturn(data!.itineraries)
-      console.log(flightsListReturn)
 
     }
 
@@ -124,7 +122,6 @@ function App() {
     });
     const status: boolean = response.ok;
     bookStatus.statusDep = status;
-    console.log('statusDep', status)
 
     if (isRound) {
       booking = {
@@ -139,7 +136,6 @@ function App() {
       });
       const status: boolean = response.ok;
       bookStatus.statusRet = status;
-      console.log('statusRet', status)
     }
 
     isOneWay 

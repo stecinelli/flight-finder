@@ -15,10 +15,10 @@ export interface IContext {
   setQntAdults: React.Dispatch<React.SetStateAction<number>>,
   qntChildren: number, 
   setQntChildren: React.Dispatch<React.SetStateAction<number>>,
-  flightsListReturn: IFlight[] | null | undefined,
-  setflightsListReturn: React.Dispatch<React.SetStateAction<IFlight[] | null | undefined>>,
-  flightsListDeparture: IFlight[] | null | undefined,
-  setflightsListDeparture: React.Dispatch<React.SetStateAction<IFlight[] | null | undefined>>,
+  flightsListReturn: IFlight[] | undefined,
+  setflightsListReturn: React.Dispatch<React.SetStateAction<IFlight[] | undefined>>,
+  flightsListDeparture: IFlight[] | undefined,
+  setflightsListDeparture: React.Dispatch<React.SetStateAction<IFlight[] | undefined>>,
   isDeparSelec: boolean,
   setIsDeparSelec: React.Dispatch<React.SetStateAction<boolean>>,
   getFlightsList: () => void,
@@ -82,4 +82,12 @@ export interface ISearch {
   departureDestination: string,
   arrivalDestination: string,
   date?: string
+}
+
+export interface IFlightInfo  {
+  flight_id: string,
+  departureDestination: string,
+  arrivalDestination: string,
+  departureAt: string,
+  arrivalAt: string,
 }

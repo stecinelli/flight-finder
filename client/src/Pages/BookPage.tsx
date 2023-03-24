@@ -117,11 +117,11 @@ const BookPage = () => {
               type='text'
               isRequired={true}
               getValueFunction={getEmail}
-              buttonFunction={any} />
+              buttonFunction={bookFlight} />
           </div>
         </Container>
 
-        <Button buttonText={'Reserve'} buttonFunction={bookFlight} />
+        <p className='ms-auto p-2'><Button buttonText={'Reserve'} buttonFunction={bookFlight} /></p>
 
       </Container>
 

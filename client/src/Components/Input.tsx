@@ -4,13 +4,15 @@ import Form from 'react-bootstrap/Form';
 interface IPropsInput {
   lableName: string,
   type: string,
+  placeholder?: string,
+  autoFocus?: boolean,
   isRequired: boolean,
   size?: "sm" | "lg" | undefined,
   buttonFunction: () => void,
   getValueFunction: (s: any) => void,
 }
 
-const Input = ({ lableName, isRequired, getValueFunction, buttonFunction, type, size }: IPropsInput) => {
+const Input = ({ lableName, isRequired, getValueFunction, buttonFunction, type, size, placeholder, autoFocus }: IPropsInput) => {
 
   const getValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -24,8 +26,9 @@ const Input = ({ lableName, isRequired, getValueFunction, buttonFunction, type, 
       
       <Form.Control
         type={type}
+        autoFocus={autoFocus}
         size={size}
-        placeholder={type === 'number' ?'0' :lableName}
+        placeholder={type === 'number' ?'0' :placeholder ?placeholder :lableName}
         required={isRequired}
         onKeyDown={e => {
           if (e.key.toLowerCase() === 'enter') {

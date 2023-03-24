@@ -1,7 +1,6 @@
 import React from 'react'
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
-import { useMainContext } from '../Context'
 import Button from './Button';
 
 interface IPropsModal {
@@ -11,11 +10,6 @@ interface IPropsModal {
 }
 
 const CenteredModal = ({error, show, onHide }: IPropsModal) => {
-  const { 
-    setBookingInfo, 
-    setModalShow,
-    setModalErrorShow
-   } = useMainContext();
   
   let navigate = useNavigate();
   
